@@ -10,7 +10,7 @@ phases:
       - REPOSITORY_URI=533266981808.dkr.ecr.us-west-2.amazonaws.com/server-image-repo
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
       - "echo Frontend asset bucket: $STATIC_BUCKET_NAME"
-      - aws s3 sync s3://$STATIC_BUCKET_NAME ./src/main/resources/static
+      - aws s3 sync "s3://$STATIC_BUCKET_NAME" ./src/main/resources/static
   build:
     commands:
       - echo Build started on `date`
