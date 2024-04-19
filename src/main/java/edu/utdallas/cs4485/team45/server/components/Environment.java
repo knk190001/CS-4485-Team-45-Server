@@ -12,4 +12,16 @@ public class Environment {
     public boolean isValid() {
         return DB_HOST_NAME != null && DB_PORT != null && DB_USERNAME != null;
     }
+
+    @Override
+    public String toString() {
+        if (!isValid()) {
+            return "Environment is not valid";
+        }
+        return "Environment{" +
+                "DB_HOST_NAME='" + DB_HOST_NAME + '\'' +
+                ", DB_PORT='" + DB_PORT + '\'' +
+                ", DB_USERNAME='" + DB_USERNAME + '\'' +
+                '}';
+    }
 }

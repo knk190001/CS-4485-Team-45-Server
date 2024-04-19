@@ -15,7 +15,7 @@ public class MainConfig {
     @Bean
     public IDatabase createDatabase() {
         Environment environment = new Environment();
-
+        logger.info(environment.toString());
         if (environment.isValid()) {
             try {
                 return new Database(new DatabaseConnectionManager(environment));
