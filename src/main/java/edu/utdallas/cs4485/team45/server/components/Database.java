@@ -19,9 +19,8 @@ public class Database implements IDatabase {
             statement.execute("SELECT * FROM test");
             ResultSet resultSet = statement.getResultSet();
             resultSet.next();
-            int id = resultSet.getInt(0);
-            String value = resultSet.getString(1);
-            statement.close();
+            int id = resultSet.getInt("ID");
+            String value = resultSet.getString("Value");
             return String.format("ID: %d, Value: %s", id, value);
         } catch (SQLException e) {
             throw new RuntimeException(e);
