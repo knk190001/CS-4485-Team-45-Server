@@ -18,6 +18,7 @@ public class Database implements IDatabase {
             Statement statement = connection.createStatement();
             statement.execute("SELECT * FROM test");
             ResultSet resultSet = statement.getResultSet();
+            resultSet.next();
             int id = resultSet.getInt(0);
             String value = resultSet.getString(1);
             statement.close();
