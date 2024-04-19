@@ -21,7 +21,7 @@ public class MainConfig {
                 return new Database(new DatabaseConnectionManager(environment));
             } catch (SQLException e) {
                 logger.error("Failed to initialize database connection");
-                logger.error("Falling back to dummy database");
+                logger.error("Falling back to dummy database", e);
             }
         } else {
             logger.info("Environment does not contain one or more DB related variables, falling back to dummy database.");
