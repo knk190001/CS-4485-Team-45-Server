@@ -18,12 +18,6 @@ public class GameManagementController {
         return gameEngine.startGame();
     }
 
-    @PostMapping("/game/leave")
-    public String leaveGame(@RequestBody LeaveGameRequest request) {
-        // game leave logic
-        return "leaving game";
-    }
-
     @PostMapping("/game/getGameState")
     public GameState getGameState(@RequestBody LeaveGameRequest request) {
         return gameEngine.makeGameState(); //##
