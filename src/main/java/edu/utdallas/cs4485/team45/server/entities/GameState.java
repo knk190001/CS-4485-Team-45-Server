@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameState {
-    List<Player> players;
-    Card pile; // top card on pile
-    Player currentPlayer;
-    Player winner = null;
-    int gameStateId;
+    public List<Player> players;
+    public Card pile; // top card on pile
+    public Player currentPlayer;
+    public Player winner = null;
+    public int gameStateId;
 
     public GameState(List<Player> players, Card pile, Player currentPlayer, Player winner, int gameStateId) {
         this.players = players;
