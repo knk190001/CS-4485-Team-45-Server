@@ -1,9 +1,12 @@
 package edu.utdallas.cs4485.team45.server.entities;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
 
+@Service
 public class GameEngine {
 
     static ArrayList<Player> lobby = new ArrayList<>(); // this is static so there is only 1
