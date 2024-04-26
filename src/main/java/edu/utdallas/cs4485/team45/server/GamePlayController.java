@@ -19,13 +19,13 @@ public class GamePlayController {
     // add player, add lobby, start game, play card, draw card
     // add get game state function
     @PostMapping("/game/playCard/{id}")
-    public GameState playCard(@PathVariable("id") int id, @RequestBody PlayCardRequest request) {
+    public GameState playCard(@PathVariable("id") int id) {
         Card.Color colorToChangeTo = request.getColorToChangeTo();
         return gameEngine.playCard(id, colorToChangeTo);
     }
 
     @PostMapping("/game/drawCard")
-    public GameState drawCard(@RequestBody DrawCardRequest request) {
+    public GameState drawCard() {
         return gameEngine.drawCard();   
     }
 
