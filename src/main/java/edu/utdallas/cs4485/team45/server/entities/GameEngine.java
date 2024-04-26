@@ -18,12 +18,12 @@ public class GameEngine {
     Player winner=null;
     static int gameStateId=0;
 
-    void addPlayer(String userName) {
+    public void addPlayer(String userName) {
         Player player = new Player(userName);
         lobby.add(player);
     }
 
-    GameState startGame() {
+    public GameState startGame() {
         deck = new Deck();
         discard = new Deck(1);
         deck.initializeDeck();
@@ -65,7 +65,7 @@ public class GameEngine {
         currentPlayer = lobby.get(nextIndex);
     }
 
-    GameState playCard(int id, Card.Color colorToChangeTo){ // add special cards
+    public GameState playCard(int id, Card.Color colorToChangeTo){ // add special cards
         Card playedCard = findCard(id);
         currentPlayer.playCard(id);
         pile=playedCard;
@@ -108,7 +108,7 @@ public class GameEngine {
         return makeGameState();
     }
 
-    GameState drawCard(){
+    public GameState drawCard(){
         currentPlayer.hand.add(deck.drawCard());
         if(deck.size()==0){ // if deck runs out of cards
             discard.shuffle();
@@ -129,7 +129,7 @@ public class GameEngine {
         return null;
     }
 
-    GameState makeGameState(){
+    public GameState makeGameState(){
         gameStateId++;
         GameState gameState = new GameState(lobby, pile, currentPlayer, winner, gameStateId);
         return gameState;
