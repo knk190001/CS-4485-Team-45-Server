@@ -29,15 +29,5 @@ public class GamePlayController {
         return gameEngine.drawCard();   
     }
 
-    @PostMapping("/game/passTurn")
-    public GameState passTurn(@RequestBody PassTurnRequest request) {
-        gameEngine.skipNextPlayer();
-        return gameEngine.makeGameState();
-    }
-
-    @PostMapping("/game/callUNO")
-    public String callUno(@RequestBody CallUNORequest request) {
-        // UNO call logic
-        return "call UNO";
-    }
+    
 }
