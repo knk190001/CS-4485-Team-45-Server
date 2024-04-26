@@ -1,5 +1,6 @@
 package edu.utdallas.cs4485.team45.server;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +13,12 @@ import edu.utdallas.cs4485.team45.server.entities.GameState;
 @RestController
 @RequestMapping("/api")
 public class GamePlayController {
-    private GameEngine gameEngine = new GameEngine();
+    GameEngine gameEngine;
+
+    @Autowired
+    public GamePlayController(GameEngine gameEngine) {
+        this.gameEngine = gameEngine;
+    }
 
     // card colors: red, blue, green, yellow, black 
     // ##
