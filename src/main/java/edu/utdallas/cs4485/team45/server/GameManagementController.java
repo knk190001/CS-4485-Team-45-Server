@@ -14,12 +14,12 @@ public class GameManagementController {
     private GameEngine gameEngine = new GameEngine();
 
     @PostMapping("/game/start")
-    public GameState startGame(@RequestBody StartGameRequest request) {
+    public GameState startGame() {
         return gameEngine.startGame();
     }
 
     @PostMapping("/game/getGameState")
-    public GameState getGameState(@RequestBody LeaveGameRequest request) {
+    public GameState getGameState() {
         return gameEngine.makeGameState(); //##
     }
 

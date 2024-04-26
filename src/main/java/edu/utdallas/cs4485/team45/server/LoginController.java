@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
     @PostMapping("/signUp/{name}/{pass}")
-    public String signUpUser(@PathVariable("name") String name, @PathVariable("pass") String pass, @RequestBody UserSignUpRequest request) {
+    public String signUpUser(@PathVariable("name") String name, @PathVariable("pass") String pass) {
         // signUp logic
     }
 
     @PostMapping("/login/{name}/{pass}")
-    public String loginUser(@PathVariable("name") String name, @PathVariable("pass") String pass, @RequestBody UserLoginRequest request) {
+    public String loginUser(@PathVariable("name") String name, @PathVariable("pass") String pass) {
         // login logic
     }
 }

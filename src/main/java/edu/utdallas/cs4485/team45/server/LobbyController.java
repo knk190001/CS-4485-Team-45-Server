@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LobbyController {
 
     @PostMapping("/lobby/join/{player}")
-    public String joinLobby(@PathVariable("player") String player, @RequestBody JoinLobbyRequest request) {
+    public String joinLobby(@PathVariable("player") String player) {
         gameEngine.addPlayer(request.getUserName());
         return "player" + player + "added";
     }
