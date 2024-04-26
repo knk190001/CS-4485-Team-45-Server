@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 // adding other classes
 import edu.utdallas.cs4485.team45.server.entities.GameEngine;
 import edu.utdallas.cs4485.team45.server.entities.GameState;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
