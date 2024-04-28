@@ -1,25 +1,25 @@
 package edu.utdallas.cs4485.team45.server;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import org.springframework.web.bind.annotation.*;
-// adding the classes used?
 import edu.utdallas.cs4485.team45.server.entities.Card;
 import edu.utdallas.cs4485.team45.server.entities.GameEngine;
-import edu.utdallas.cs4485.team45.server.entities.GameState; 
+import edu.utdallas.cs4485.team45.server.entities.GameEvent;
+import edu.utdallas.cs4485.team45.server.entities.GameState;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
 public class GamePlayController {
     GameEngine gameEngine;
+    GameEventController eventController;
 
     @Autowired
-    public GamePlayController(GameEngine gameEngine) {
+    public GamePlayController(GameEngine gameEngine, GameEventController eventController) {
         this.gameEngine = gameEngine;
+        this.eventController = eventController;
     }
 
     // card colors: red, blue, green, yellow, black 
@@ -28,6 +28,7 @@ public class GamePlayController {
     // add get game state function
     @PostMapping("/game/playCard/{id}")
     public GameState playCard(@PathVariable("id") int id) {
+        eventController.emitEvent(GameEvent.UPDATE);
         return gameEngine.playCard(id, null);
     }
 
@@ -48,13 +49,13 @@ public class GamePlayController {
                 colorToChangeTo = Card.Color.YELLOW;
                 break;
         }
+        eventController.emitEvent(GameEvent.UPDATE);
         return gameEngine.playCard(id, colorToChangeTo);
     }
 
     @PostMapping("/game/drawCard")
     public GameState drawCard() {
+        eventController.emitEvent(GameEvent.UPDATE);
         return gameEngine.drawCard();   
     }
-
-    
 }
