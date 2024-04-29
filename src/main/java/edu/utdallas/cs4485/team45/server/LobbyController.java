@@ -23,6 +23,6 @@ public class LobbyController {
     @PostMapping("/lobby/join/{player}")
     public String joinLobby(@PathVariable("player") String player) {
         gameEngine.addPlayer(player);
-        return "player" + player + "added";
+        return "player " + player + " added";
     }
 }

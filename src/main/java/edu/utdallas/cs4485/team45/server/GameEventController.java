@@ -5,13 +5,15 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.*;
 
-@RestController("/api")
+@RestController
+@RequestMapping("/api")
 public class GameEventController {
     private final List<SseEmitter> emitters = new CopyOnWriteArrayList<>();
     private final Log logger = LogFactory.getLog(GameEventController.class);
