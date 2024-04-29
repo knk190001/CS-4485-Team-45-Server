@@ -29,6 +29,7 @@ public class GameEngine {
         deck.initializeDeck();
         deck.shuffle();
         dealCards();
+        pile = deck.drawCard();
         currentPlayer = lobby.get(0);
         winner = null;
         return makeGameState();
