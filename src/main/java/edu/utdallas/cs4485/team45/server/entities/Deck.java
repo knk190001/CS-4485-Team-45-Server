@@ -46,7 +46,7 @@ public class Deck {
         // Add wild cards
         for (int i = 0; i < 4; i++) {
             cards.add(new Card(Card.Color.BLACK, WILD));
-            cards.add(new Card(Card.Color.BLACK, WILD_DRAW_FOUR));
+//            cards.add(new Card(Card.Color.BLACK, WILD_DRAW_FOUR));
         }
         int id=0;
         for(Card card : cards){

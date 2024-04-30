@@ -3,8 +3,6 @@ package edu.utdallas.cs4485.team45.server.entities;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Stack;
 
 @Service
 public class GameEngine {
@@ -17,6 +15,8 @@ public class GameEngine {
     boolean reverseDirection = false;
     Player winner=null;
     static int gameStateId=0;
+
+    ArrayList<ActionRecord> actions;
 
     public void addPlayer(String userName) {
         Player player = new Player(userName);
@@ -32,6 +32,7 @@ public class GameEngine {
         pile = deck.drawCard();
         currentPlayer = lobby.get(0);
         winner = null;
+        actions = new ArrayList<ActionRecord>();
         return makeGameState();
     }
 
@@ -74,6 +75,8 @@ public class GameEngine {
         } else {
             nextIndex = (currentIndex + 2) % lobby.size();
         }
+        int skipped = (currentIndex + (reverseDirection ? -1 : 1) + lobby.size()) % lobby.size();
+        actions.add(new ActionRecord(currentPlayer.username, lobby.get(skipped).username, Action.SKIPPED, pile));
         currentPlayer = lobby.get(nextIndex);
     }
 
@@ -89,6 +92,7 @@ public class GameEngine {
         switch(playedCard.getType()){
             case NUM:
                 switchToNextPlayer();
+                actions.add(new ActionRecord(currentPlayer.username,"", Action.PLAYED, playedCard));
                 break;
             case SKIP:
                 skipNextPlayer();
@@ -96,18 +100,22 @@ public class GameEngine {
             case WILD:
                 switchToNextPlayer();
                 pile = new Card(colorToChangeTo, 99);
+                actions.add(new ActionRecord(currentPlayer.username,"", Action.WILD, pile));
                 break;
             case REVERSE:
                 reverseDirection = !reverseDirection; // flip direction
                 switchToNextPlayer();
+                actions.add(new ActionRecord(currentPlayer.username,"", Action.REVERSED, playedCard));
                 break;
             case DRAW_TWO:
+                String currentPlayerName = currentPlayer.username;
                 switchToNextPlayer();
-                drawCard();
-                drawCard();
+                actions.add(new ActionRecord(currentPlayerName, currentPlayer.username, Action.DRAW_TWO, playedCard));
+                drawCard(false);
+                drawCard(false);
                 switchToNextPlayer();
                 break;
-            case WILD_DRAW_FOUR:
+            /*case WILD_DRAW_FOUR:
                 switchToNextPlayer();
                 drawCard();
                 drawCard();
@@ -115,17 +123,21 @@ public class GameEngine {
                 drawCard();
                 switchToNextPlayer();
                 pile = new Card(colorToChangeTo, 99);
-                break;
+                break;*/
         }
         return makeGameState();
     }
 
-    public GameState drawCard(){
+    public GameState drawCard(boolean nextPlayer){
         currentPlayer.hand.add(deck.drawCard());
         if(deck.size()==0){ // if deck runs out of cards
             discard.shuffle();
             deck = discard;
             discard = new Deck(1);
+        }
+        if(nextPlayer){
+            switchToNextPlayer();
+            actions.add(new ActionRecord(currentPlayer.username,"", Action.DREW, null));
         }
         return makeGameState();
     }
@@ -143,7 +155,7 @@ public class GameEngine {
 
     public GameState makeGameState(){
         gameStateId++;
-        GameState gameState = new GameState(lobby, pile, currentPlayer, winner, gameStateId);
+        GameState gameState = new GameState(lobby, pile, currentPlayer, winner, gameStateId, actions);
         return gameState;
     }
 

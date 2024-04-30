@@ -5,7 +5,7 @@ package edu.utdallas.cs4485.team45.server.entities;
         }
 
         public enum Type {
-            NUM, SKIP, REVERSE, DRAW_TWO, WILD, WILD_DRAW_FOUR
+            NUM, SKIP, REVERSE, DRAW_TWO, WILD, /*WILD_DRAW_FOUR*/
         }
 
         int id;

@@ -28,8 +28,9 @@ public class GamePlayController {
     // add get game state function
     @PostMapping("/game/playCard/{id}")
     public GameState playCard(@PathVariable("id") int id) {
+        GameState gameState = gameEngine.playCard(id, null);
         eventController.emitEvent(GameEvent.UPDATE);
-        return gameEngine.playCard(id, null);
+        return gameState;
     }
 
     @PostMapping("/game/playCard/{id}/{color}")
@@ -49,13 +50,15 @@ public class GamePlayController {
                 colorToChangeTo = Card.Color.YELLOW;
                 break;
         }
+        GameState gameState = gameEngine.playCard(id, colorToChangeTo);
         eventController.emitEvent(GameEvent.UPDATE);
-        return gameEngine.playCard(id, colorToChangeTo);
+        return gameState;
     }
 
     @PostMapping("/game/drawCard")
     public GameState drawCard() {
+        GameState gameState = gameEngine.drawCard(true);
         eventController.emitEvent(GameEvent.UPDATE);
-        return gameEngine.drawCard();   
+        return gameState;
     }
 }
