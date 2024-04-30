@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -39,6 +40,11 @@ public class GameEventController {
             }
         });
         emitters.removeAll(deadEmitters);
+    }
+
+    public void clear() {
+        emitters.forEach(ResponseBodyEmitter::complete);
+        emitters.clear();
     }
 
     @GetMapping(value = "/game/events", produces = MediaType.TEXT_EVENT_STREAM_VALUE)

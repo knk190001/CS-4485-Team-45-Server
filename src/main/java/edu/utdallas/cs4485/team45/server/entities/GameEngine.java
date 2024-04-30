@@ -35,6 +35,17 @@ public class GameEngine {
         return makeGameState();
     }
 
+    public void reset() {
+        deck = null;
+        discard = null;
+        pile = null;
+        currentPlayer = null;
+        reverseDirection = false;
+        winner = null;
+        gameStateId=0;
+        lobby.clear();
+    }
+
     void dealCards() {
         for (Player player : lobby) {
             for (int i = 0; i < 7; i++) {

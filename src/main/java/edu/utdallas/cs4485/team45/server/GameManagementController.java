@@ -31,7 +31,13 @@ public class GameManagementController {
         return gameEngine.makeGameState(); //##
     }
 
-    
+    @PostMapping("/game/reset")
+    public void resetGame() {
+        eventController.emitEvent(GameEvent.RESET);
+        gameEngine.reset();
+        eventController.clear();
+    }
+
 
     // @GetMapping("/game/{gameId}")
     // public GameInfo getGameInfo(@PathVariable("gameId") String gameId) {
