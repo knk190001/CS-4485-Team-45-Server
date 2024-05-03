@@ -6,10 +6,10 @@ import java.util.List;
 
 public class Wins {
 	
-	public ArrayList<Player> playerWins;
+	HashMap<String, Integer> playerWins;
 
 	public Wins() {
-        HashMap<String, Integer> playerWins = new HashMap<>();
+        	playerWins = new HashMap<>();
 	}
 
 	public void takeWins(ArrayList<Player> inputs) {
