@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class GameManagementController {
     GameEngine gameEngine;
     GameEventController eventController;
+    Wins gameWins;
 
     @Autowired
-    public GameManagementController(GameEngine gameEngine, GameEventController eventController) {
+    public GameManagementController(GameEngine gameEngine, GameEventController eventController, Wins gameWins) {
         this.gameEngine = gameEngine;
         this.eventController = eventController;
+        this.gameWins = gameWins;
     }
 
     @PostMapping("/game/start")
@@ -34,8 +36,14 @@ public class GameManagementController {
     @PostMapping("/game/reset")
     public void resetGame() {
         eventController.emitEvent(GameEvent.RESET);
+        gameWins.takeWins(gameEngine.lobby); // wins
         gameEngine.reset();
         eventController.clear();
+    }
+
+    @PostMapping("/game/getWins")
+    public HashMap getWins() {
+        return gameWins.getWins(); // wins
     }
 
 
