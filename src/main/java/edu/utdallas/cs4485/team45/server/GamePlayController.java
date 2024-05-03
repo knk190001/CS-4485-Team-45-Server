@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class GamePlayController {
     GameEngine gameEngine;
     GameEventController eventController;
+    Wins gameWins;
 
     @Autowired
-    public GamePlayController(GameEngine gameEngine, GameEventController eventController) {
+    public GamePlayController(GameEngine gameEngine, GameEventController eventController, Wins gameWins) {
         this.gameEngine = gameEngine;
         this.eventController = eventController;
+        this.gameWins = gameWins;
     }
 
     // card colors: red, blue, green, yellow, black 
