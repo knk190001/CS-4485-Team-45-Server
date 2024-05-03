@@ -4,14 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    String username;
-    ArrayList<Card> hand;
+    public String username;
+    public ArrayList<Card> hand;
+    public String password;
 
     public Player(String username) {
         this.username = username;
         this.hand = new ArrayList<>();
     }
+    public Player(String username, String password) {
+        this.username = username;
+        this.password=password;
+        this.hand = new ArrayList<>();
+    }
 
+    public void setPassword(String password){
+        this.password=password;
+    }
     public String getUsername() {
         return username;
     }

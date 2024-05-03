@@ -23,6 +23,14 @@ public class GameEngine {
         lobby.add(player);
     }
 
+    public String authenticateUser(Player player, String password){
+        if(player.password.equals(password)){
+            return "Authenticated";
+        }else{
+            return "Denied";
+        }
+    }
+
     public GameState startGame() {
         deck = new Deck();
         discard = new Deck(1);
