@@ -2,14 +2,15 @@ package edu.utdallas.cs4485.team45.server.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 
 
 public class Wins {
 	
-	public ArrayList<Player> playerWins;
+	HashMap<String, Integer> playerWins;
 
 	public Wins() {
-        HashMap<String, Integer> playerWins = new HashMap<>();
+        playerWins = new HashMap<>();
 	}
 
 	public void takeWins(ArrayList<Player> inputs) {
