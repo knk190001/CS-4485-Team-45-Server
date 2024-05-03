@@ -4,6 +4,9 @@ import edu.utdallas.cs4485.team45.server.entities.Card;
 import edu.utdallas.cs4485.team45.server.entities.GameEngine;
 import edu.utdallas.cs4485.team45.server.entities.GameEvent;
 import edu.utdallas.cs4485.team45.server.entities.GameState;
+import edu.utdallas.cs4485.team45.server.entities.Wins;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
