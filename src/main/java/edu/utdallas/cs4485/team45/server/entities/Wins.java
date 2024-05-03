@@ -10,7 +10,7 @@ public class Wins {
 	HashMap<String, Integer> playerWins;
 
 	public Wins() {
-        playerWins = new HashMap<>();
+      playerWins = new HashMap<>();
 	}
 
 	public void takeWins(ArrayList<Player> inputs) {
