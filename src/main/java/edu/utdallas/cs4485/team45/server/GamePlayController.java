@@ -6,12 +6,13 @@ import edu.utdallas.cs4485.team45.server.entities.GameEvent;
 import edu.utdallas.cs4485.team45.server.entities.GameState;
 import edu.utdallas.cs4485.team45.server.entities.Wins;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/api")
