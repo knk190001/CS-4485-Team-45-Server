@@ -47,6 +47,7 @@ public class GameManagementController {
 
     @PostMapping("/game/getWins")
     public HashMap getWins() {
+        gameWins.takeWins(gameEngine.lobby); // wins
         return gameWins.getWins(gameEngine.lobby); // wins
     }
 
