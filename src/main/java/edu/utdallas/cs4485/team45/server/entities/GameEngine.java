@@ -7,7 +7,7 @@ import java.util.*;
 @Service
 public class GameEngine {
 
-    static ArrayList<Player> lobby = new ArrayList<>(); // this is static so there is only 1
+    public static ArrayList<Player> lobby = new ArrayList<>(); // this is static so there is only 1
     Deck deck;
     Deck discard;
     Card pile;
