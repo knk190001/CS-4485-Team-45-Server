@@ -95,6 +95,7 @@ public class GameEngine {
         discard.cards.add(playedCard);
         if(currentPlayer.hand.size()==0){
             winner = currentPlayer;
+            currentPlayer.numWins++;
             return makeGameState();
         }
         switch(playedCard.getType()){

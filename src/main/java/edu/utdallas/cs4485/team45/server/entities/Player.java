@@ -7,6 +7,7 @@ public class Player {
     public String username;
     public ArrayList<Card> hand;
     public String password;
+    public int numWins=0;
 
     public Player(String username) {
         this.username = username;
